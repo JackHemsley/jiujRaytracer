@@ -7,7 +7,7 @@ void World::addShape(std::shared_ptr<Shape> s) {
 	shapeList.push_back(s);
 }
 
-bool World::intersect(const ray& r, double t_min, double t_max, hit_record& hit_rec, std::set<intersection>& intersections) {
+bool World::intersect(const ray& r, double t_min, double t_max, hit_record& hit_rec, std::set<intersection>& intersections) const {
 
 
 	bool anything_hit = false;
@@ -23,7 +23,7 @@ bool World::intersect(const ray& r, double t_min, double t_max, hit_record& hit_
 			}
 			anything_hit = true;
 			intersections.insert(intersection(s, hit_rec.t_close));
-			intersections.insert(intersection(s, hit_rec.t_close));
+			intersections.insert(intersection(s, hit_rec.t_far));
 		}
 	}
 

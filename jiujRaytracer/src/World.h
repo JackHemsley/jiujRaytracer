@@ -25,7 +25,7 @@ public:
 	World(std::vector<std::shared_ptr<Shape>> shapeList, std::vector<std::shared_ptr<pointLight>> lights);
 
 	void addShape(std::shared_ptr<Shape> s);
-	bool intersect(const ray& r, double t_min, double t_max, hit_record& hit_rec, std::set<intersection>& intersections);
+	bool intersect(const ray& r, double t_min, double t_max, hit_record& hit_rec, std::set<intersection>& intersections) const;
 
 
 private:

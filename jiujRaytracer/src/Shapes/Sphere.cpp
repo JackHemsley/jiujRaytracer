@@ -25,7 +25,7 @@ bool Sphere::intersect(const ray& r, double t_min, double t_max, hit_record& hit
 	hit_rec.t = hit_rec.t_close;
 	if (hit_rec.t_close < t_min || hit_rec.t_close > t_max) {
 		hit_rec.t = hit_rec.t_far;
-		if (hit_rec.t_far > t_max) {
+		if (hit_rec.t_far > t_max || hit_rec.t_far < t_min) {
 			return false;
 		}
 	}
@@ -33,6 +33,14 @@ bool Sphere::intersect(const ray& r, double t_min, double t_max, hit_record& hit
 	hit_rec.p =  point3(r.getOrigin() + r.getDirection() * hit_rec.t_close);
 	hit_rec.hit_normal = normal_at(hit_rec.p);
 	hit_rec.m = this->getMaterial();
+	hit_rec.v = -1 * r.getDirection();
+
+	
+	if (hit_rec.hit_normal.normalToVec3().dot(-1 * rObj.getDirection()) < 0) {
+		hit_rec.inside = true;
+		hit_rec.hit_normal = -1 * hit_rec.hit_normal;
+	}
+	
 	return true;
 }
 

@@ -11,7 +11,9 @@ struct hit_record{
 	double t_close = 0;
 	double t_far = 0;
 	normal hit_normal = normal();
+	vec3 v;
 	point3 p = point3();
+	bool inside = false;
 
 };
 
